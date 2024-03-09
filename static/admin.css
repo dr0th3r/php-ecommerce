@@ -1,11 +1,11 @@
-.brand-list {
+.brand-list, .product-list {
   display: flex;
   flex-direction: column;
   gap: .5rem;
   padding: .5rem;
 }
 
-.brand-list li {
+.brand-list li, .product-list li {
   display: flex;
   justify-content: space-between;
 }

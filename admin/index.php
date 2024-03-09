@@ -57,7 +57,24 @@
       }
     ?>
   </ul>
-<!--   <form action="./create_brand.php" method="post">
+
+  <ul class="product-list">
+    <?php
+      foreach ($products as $product) {
+        echo "<li>";
+        echo "<span>".$product['name']."</span>";
+        echo '<form action="./delete_product.php" method="post">';
+        echo '<input type="hidden" name="id" value="'.$product['id'].'" />';
+        echo '<button type="submit" class="submit-btn">';
+        echo '<i class="fa fa-solid fa-trash"></i>';
+        echo '</button>';
+        echo '</form>';
+        echo "</li>";
+      }
+    ?>
+  </ul>
+
+  <form action="./create_brand.php" method="post">
     <input type="text" name="name" placeholder="Brand Name" />
     <button type="submit">Create Brand</button>
   </form>
@@ -78,12 +95,5 @@
     </form> 
   <?php endif; ?>
 
-  <ul>
-    <?php
-      foreach ($products as $product) {
-        echo "<li>".$product['name']."</li>";
-      }
-    ?>
-  </ul> -->
 </body>
 </html>
