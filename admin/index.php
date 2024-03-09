@@ -37,10 +37,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="../static/style.css">
+  <link rel="stylesheet" href="../static/admin.css">
 </head>
 <body>
-  <form action="./create_brand.php" method="post">
+  <ul class="brand-list">
+    <?php
+      foreach ($brands as $brand) {
+        echo "<li>
+          <span>".$brand['name']."</span>
+          <form action=\"./delete_brand.php\" method=\"post\">
+            <input type=\"hidden\" name=\"id\" value=\"".$brand['id']."\" />
+            <button type=\"submit\" class=\"submit-btn\">
+              <i class=\"fa fa-solid fa-trash\"></i>
+            </button>
+          </form>
+        </li>";
+      }
+    ?>
+  </ul>
+<!--   <form action="./create_brand.php" method="post">
     <input type="text" name="name" placeholder="Brand Name" />
     <button type="submit">Create Brand</button>
   </form>
@@ -67,6 +84,6 @@
         echo "<li>".$product['name']."</li>";
       }
     ?>
-  </ul>
+  </ul> -->
 </body>
 </html>

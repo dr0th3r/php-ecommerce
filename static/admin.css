@@ -1,0 +1,18 @@
+.brand-list {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  padding: .5rem;
+}
+
+.brand-list li {
+  display: flex;
+  justify-content: space-between;
+}
+
+.submit-btn {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
