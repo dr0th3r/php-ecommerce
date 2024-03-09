@@ -16,7 +16,12 @@
       <div class="user">
         <button class="icon-btn"><i class="fas fa-shopping-cart"></i></button>
         <button class="icon-btn"><i class="fas fa-user"></i></button>
+        <button class="icon-btn hamburger"><i class="fa-solid fa-bars"></i></button>
       </div>
+    </div>
+    <div class="mobile-search">
+      <input type="text" placeholder="Search" class="search-bar">
+      <button class="icon-btn"><i class="fas fa-search"></i></button>
     </div>
     <ul class="header-links">
       <li class="product">Mobile</li>
@@ -27,5 +32,6 @@
       <li class="product">Gaming</li>
     </ul>
   </nav>
+  <script src="./header.js"></script>
 </body>
 </html>
