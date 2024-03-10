@@ -16,30 +16,19 @@
     die;
   }
 
-/*   $productQuery = "select 
-              product.*, 
-              brand.name as brand_name,
-              review.id as review_id, review.comment as review_comment, review.rating as review_rating, review.user_id as user_id,
-              user.email as user_email
-            from product 
-            left join brand on product.brand_id = brand.id 
-            left join review on product.id = review.product_id
-            left join user on review.user_id = user.id
-            where product.id = $id
-            order by user_id,
-              case when user_id = $user_id then 0 else 1 end;
-            "; */
-
   $productQuery = "select product.*, brand.name as brand_name from product join brand on product.brand_id = brand.id where product.id = $id;";
   
   $reviewsQuery = "select 
     review.*, user.name as user_name 
     from review 
     join user on review.user_id = user.id 
-    where review.product_id = $id
-    order by user_id,
-      case when user_id = $user_id then 0 else 1 end;
-    ";
+    where review.product_id = $id";
+  
+  if (isset($user_id)) {
+    $reviewsQuery .= " order by case when user_id = $user_id then 0 else 1 end;";
+  } else {
+    $reviewsQuery .= ";";
+  }
 
   $productResult = mysqli_query($con, $productQuery);
   $reviewsResult = mysqli_query($con, $reviewsQuery);
@@ -61,8 +50,13 @@
   <?php
     echo "<title>" . $product['name'] . "</title>";
   ?>
+  <link rel="stylesheet" href="../static/style.css">
+  <link rel="stylesheet" href="../static/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+  <?php require_once '../header.php'?>
+
   <?php 
     echo <<<HEREDOC
       <h1>{$product['name']}</h1>
@@ -75,12 +69,59 @@
   <h2>Reviews</h2>
   <ul>
     <?php
-      foreach ($reviews as $review) {
-        echo "<li>";
-        echo "<p>{$review['user_name']}</p>";
-        echo "<p>{$review['comment']}</p>";
-        echo "<p>{$review['rating']}</p>";
-        echo "</li>";
+      foreach ($reviews as $i=>$review) {
+        if ($i == 0 && $review['user_id'] == $user_id) {
+          echo <<<HEREDOC
+              <li>
+                <p>{$review['user_name']}</p>
+                <p>{$review['comment']}</p>
+                <p>{$review['rating']}</p>
+                <button>Edit</button>
+                <form action="./delete_review.php" method="post">
+                  <input type="hidden" name="id" value="{$review['id']}" />
+                  <button type="submit">Delete</button>
+                </form>
+              </li>
+          HEREDOC;
+        } else {
+          if ($i == 0 && isset($user_id)) {
+            echo <<<HEREDOC
+              <li>
+                <form action="./create_review.php" method="post">
+                  <input type="hidden" name="id" value="{$product['id']}" />
+                  <textarea type="text" name="comment" ></textarea>
+                  <input type="number" name="rating" min="1" max="5"/>
+                  <button type="submit">Add</button>
+                </form>
+              </li>
+              <li>
+                <p>{$review['user_name']}</p>
+                <p>{$review['comment']}</p>
+                <p>{$review['rating']}</p>
+              </li>
+            HEREDOC;
+          } elseif ($i == 0) {
+            echo <<<HEREDOC
+              <li>
+                <a href="/ecommerce/login">Login to add a review</a>
+              </li>
+              <li>
+                <p>{$review['user_name']}</p>
+                <p>{$review['comment']}</p>
+                <p>{$review['rating']}</p>
+              </li>
+            HEREDOC;
+          } else {
+            echo <<<HEREDOC
+              <li>
+                <p>{$review['user_name']}</p>
+                <p>{$review['comment']}</p>
+                <p>{$review['rating']}</p>
+              </li>
+            HEREDOC;
+          }
+        }
+
       }
     ?>
 </body>

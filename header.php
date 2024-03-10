@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./static/header.css">
+  <link rel="stylesheet" href="/ecommerce/static/header.css">
 </head>
 <body>
   <nav class="header-nav">
@@ -15,7 +15,17 @@
       </div>
       <div class="user">
         <button class="icon-btn"><i class="fas fa-shopping-cart"></i></button>
-        <button class="icon-btn"><i class="fas fa-user"></i></button>
+        <?php
+          if (isset($_SESSION['user_id'])) {
+            echo <<<HEREDOC
+              <form action="/ecommerce/logout.php" method="post">
+                <button class="icon-btn"><i class="fas fa-user"></i></button>
+              </form>
+            HEREDOC;
+          } else {
+            echo '<a href="/ecommerce/login" class="icon-btn"><i class="fas fa-user"></i></a>';
+          }
+        ?>
         <button class="icon-btn hamburger"><i class="fa-solid fa-bars"></i></button>
       </div>
     </div>
@@ -32,6 +42,6 @@
       <li class="product">Gaming</li>
     </ul>
   </nav>
-  <script src="./header.js"></script>
+  <script src="/ecommerce/header.js"></script>
 </body>
 </html>
