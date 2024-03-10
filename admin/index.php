@@ -45,15 +45,17 @@
   <ul class="brand-list">
     <?php
       foreach ($brands as $brand) {
-        echo "<li>
-          <span>".$brand['name']."</span>
-          <form action=\"./delete_brand.php\" method=\"post\">
-            <input type=\"hidden\" name=\"id\" value=\"".$brand['id']."\" />
-            <button type=\"submit\" class=\"submit-btn\">
-              <i class=\"fa fa-solid fa-trash\"></i>
-            </button>
-          </form>
-        </li>";
+        echo <<<HEREDOC
+          <li>
+            <span>{$brand['name']}</span>
+            <form action="./delete_brand.php" method="post">
+              <input type="hidden" name="id" value="{$brand['id']}" />
+              <button type="submit" class="submit-btn">
+                <i class="fa fa-solid fa-trash"></i>
+              </button>
+            </form>
+          </li>
+        HEREDOC;
       }
     ?>
   </ul>
@@ -61,15 +63,17 @@
   <ul class="product-list">
     <?php
       foreach ($products as $product) {
-        echo "<li>";
-        echo "<span>".$product['name']."</span>";
-        echo '<form action="./delete_product.php" method="post">';
-        echo '<input type="hidden" name="id" value="'.$product['id'].'" />';
-        echo '<button type="submit" class="submit-btn">';
-        echo '<i class="fa fa-solid fa-trash"></i>';
-        echo '</button>';
-        echo '</form>';
-        echo "</li>";
+        echo <<<HEREDOC
+          <li>
+            <span>{$product['name']}</span>
+            <form action="./delete_product.php" method="post">
+              <input type="hidden" name="id" value="{$product['id']}" />
+              <button type="submit" class="submit-btn">
+                <i class="fa fa-solid fa-trash"></i>
+              </button>
+            </form>
+          </li>
+        HEREDOC;
       }
     ?>
   </ul>
