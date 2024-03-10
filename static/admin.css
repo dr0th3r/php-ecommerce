@@ -1,8 +1,21 @@
+.list-container {
+  display: flex;
+  gap: 1rem;
+}
+
 .brand-list, .product-list {
   display: flex;
   flex-direction: column;
   gap: .5rem;
   padding: .5rem;
+}
+
+.brand-list {
+  flex: 1;
+}
+
+.product-list {
+  flex: 2;
 }
 
 .brand-list li, .product-list li {
@@ -15,4 +28,13 @@
   border: none;
   outline: none;
   cursor: pointer;
+}
+
+
+.create-brand-btn, .create-brand-form {
+  display: none;
+}
+
+.is-active {
+  display: flex;
 }

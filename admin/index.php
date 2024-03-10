@@ -42,46 +42,53 @@
   <link rel="stylesheet" href="../static/admin.css">
 </head>
 <body>
-  <ul class="brand-list">
-    <?php
-      foreach ($brands as $brand) {
-        echo <<<HEREDOC
-          <li>
-            <span>{$brand['name']}</span>
-            <form action="./delete_brand.php" method="post">
-              <input type="hidden" name="id" value="{$brand['id']}" />
-              <button type="submit" class="submit-btn">
-                <i class="fa fa-solid fa-trash"></i>
-              </button>
-            </form>
-          </li>
-        HEREDOC;
-      }
-    ?>
-  </ul>
+  <div class="list-container">
+    <ul class="brand-list">
+      <?php
+        foreach ($brands as $brand) {
+          echo <<<HEREDOC
+            <li>
+              <span>{$brand['name']}</span>
+              <form action="./delete_brand.php" method="post">
+                <input type="hidden" name="id" value="{$brand['id']}" />
+                <button type="submit" class="submit-btn">
+                  <i class="fa fa-solid fa-trash"></i>
+                </button>
+              </form>
+            </li>
+          HEREDOC;
+        }
+      ?>
+      <li>
+        <button id="create-brand-btn" class="create-brand-btn is-active">
+          Add brand
+        </button>
+        <form method="post" action="./create_brand.php" id="create-brand-form" class="create-brand-form">
+          <input type="text" name="name" placeholder="Brand Name" />
+          <button type="submit">Create Brand</button>
+          <button id="cancel-create-brand-btn" type="button">Cancel</button>
+        </form>
+      </li>
+    </ul>
 
-  <ul class="product-list">
-    <?php
-      foreach ($products as $product) {
-        echo <<<HEREDOC
-          <li>
-            <span>{$product['name']}</span>
-            <form action="./delete_product.php" method="post">
-              <input type="hidden" name="id" value="{$product['id']}" />
-              <button type="submit" class="submit-btn">
-                <i class="fa fa-solid fa-trash"></i>
-              </button>
-            </form>
-          </li>
-        HEREDOC;
-      }
-    ?>
-  </ul>
-
-  <form action="./create_brand.php" method="post">
-    <input type="text" name="name" placeholder="Brand Name" />
-    <button type="submit">Create Brand</button>
-  </form>
+    <ul class="product-list">
+      <?php
+        foreach ($products as $product) {
+          echo <<<HEREDOC
+            <li>
+              <span>{$product['name']}</span>
+              <form action="./delete_product.php" method="post">
+                <input type="hidden" name="id" value="{$product['id']}" />
+                <button type="submit" class="submit-btn">
+                  <i class="fa fa-solid fa-trash"></i>
+                </button>
+              </form>
+            </li>
+          HEREDOC;
+        }
+      ?>
+    </ul>
+  </div>
 
   <?php if(count($brands) > 0): ?>
     <form action="./create_product.php" method="post">
@@ -98,6 +105,6 @@
       <button type="submit">Create Product</button>
     </form> 
   <?php endif; ?>
-
+  <script src="./admin.js"></script>
 </body>
 </html>
