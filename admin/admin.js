@@ -11,3 +11,12 @@ cancelCreateBrandBtn.addEventListener("click", () => {
   createBrandBtn.classList.add("is-active");
   createBrandForm.classList.remove("is-active");
 });
+
+//dialog
+
+const createProductDialog = document.getElementById("create-product-dialog");
+const createProductBtn = document.getElementById("create-product-btn");
+
+createProductBtn.addEventListener("click", () => {
+  createProductDialog.show();
+});

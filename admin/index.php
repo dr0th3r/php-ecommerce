@@ -87,24 +87,33 @@
           HEREDOC;
         }
       ?>
+      <li>
+        <button id="create-product-btn">
+          Add product
+        </button>
+      </li>
     </ul>
   </div>
 
-  <?php if(count($brands) > 0): ?>
-    <form action="./create_product.php" method="post">
-      <input type="text" placeholder="Product Name" name="name"/>
-      <input type="text" placeholder="Description" name="description"/>
-      <input type="text" placeholder="Price" name="price"/>
-      <select name="brand-id">
-        <?php
-          foreach ($brands as $brand) {
-            echo "<option value='".$brand['id']."'>".$brand['name']."</option>";
-          }
-        ?>
-      </select>
-      <button type="submit">Create Product</button>
-    </form> 
-  <?php endif; ?>
+  <dialog id="create-product-dialog">
+    <h1>Create Product</h1>
+    <form action="./create_product.php" method="post" class="create-product-form">
+        <input type="text" placeholder="Product Name" name="name"/>
+        <textarea type="text" placeholder="Description" name="description"></textarea>
+        <input type="text" placeholder="Price" name="price"/>
+        <select name="brand-id">
+          <?php
+            foreach ($brands as $brand) {
+              echo "<option value='".$brand['id']."'>".$brand['name']."</option>";
+            }
+          ?>
+        </select>
+        <button type="submit">Create Product</button>
+    </form>
+    <form method="dialog">
+        <button>Cancel</button>
+    </form>
+  </dialog>
   <script src="./admin.js"></script>
 </body>
 </html>
