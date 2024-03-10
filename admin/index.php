@@ -47,13 +47,26 @@
       <?php
         foreach ($brands as $brand) {
           echo <<<HEREDOC
-            <li>
+            <li class="brand-li is-active">
               <span>{$brand['name']}</span>
-              <form action="./delete_brand.php" method="post">
-                <input type="hidden" name="id" value="{$brand['id']}" />
-                <button type="submit" class="submit-btn">
-                  <i class="fa fa-solid fa-trash"></i>
+              <div class="icon-container">
+                <button class="submit-btn update-brand-btn">
+                  <i class="fa fa-solid fa-pen"></i>
                 </button>
+                <form action="./delete_brand.php" method="post">
+                  <input type="hidden" name="id" value="{$brand['id']}" />
+                  <button type="submit" class="submit-btn">
+                    <i class="fa fa-solid fa-trash"></i>
+                  </button>
+                </form>
+              </div>
+            </li>
+            <li class="update-brand-li" id="update-{$brand['id']}">
+              <form action="./update_brand.php" method="post">
+                <input type="hidden" name="id" value="{$brand['id']}" />
+                <input type="text" name="name" placeholder="Brand Name" value="{$brand['name']}">
+                <button type="submit">Update Brand</button>
+                <button class="cancel-update-brand-btn" type="button">Cancel</button>
               </form>
             </li>
           HEREDOC;

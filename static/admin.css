@@ -18,9 +18,22 @@
   flex: 2;
 }
 
-.brand-list li, .product-list li {
-  display: flex;
+.brand-li, .product-list li {
   justify-content: space-between;
+}
+
+.brand-li {
+  display: none;
+}
+
+.product-list li {
+  display: flex;
+}
+
+.icon-container {
+  display: flex;
+  gap: .5rem;
+
 }
 
 .submit-btn {
@@ -34,12 +47,6 @@
 .create-brand-btn, .create-brand-form {
   display: none;
 }
-
-.is-active {
-  display: flex;
-}
-
-
 
 dialog {
   position: absolute;
@@ -59,4 +66,12 @@ dialog::backdrop {
   flex-direction: column;
   gap: .5rem;
   padding: .5rem 0;
+}
+
+.update-brand-li {
+  display: none;
+}
+
+.is-active {
+  display: flex;
 }
