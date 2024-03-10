@@ -18,12 +18,18 @@
         <?php
           if (isset($_SESSION['user_id'])) {
             echo <<<HEREDOC
-              <form action="/ecommerce/logout.php" method="post">
-                <button class="icon-btn"><i class="fas fa-user"></i></button>
-              </form>
+              <button class="icon-btn" id="toggle-dropdown-btn"><i class="fas fa-user"></i></button>
+              <div class="dropdown">
+                <form action="/ecommerce/logout.php" method="post">
+                  <button class="icon-btn">Logout</button>
+                </form>
+                <form action="/ecommerce/delete_user.php" method="post">
+                  <button class="icon-btn">Delete Account</button>
+                </form>
+              </div>
             HEREDOC;
           } else {
-            echo '<a href="/ecommerce/login" class="icon-btn"><i class="fas fa-user"></i></a>';
+            echo '<a href="/ecommerce/login" class="icon-btn">Login</a>';
           }
         ?>
         <button class="icon-btn hamburger"><i class="fa-solid fa-bars"></i></button>
