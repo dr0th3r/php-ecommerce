@@ -7,6 +7,12 @@
   }
 
   $id = $_POST['id'];
+
+  if (!isset($id)) {
+    echo "Invalid input";
+    die;
+  }
+
   $productQuery = "delete from product where brand_id = $id";
   $brandQuery = "delete from brand where id = $id";
 

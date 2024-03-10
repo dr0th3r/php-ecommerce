@@ -3,11 +3,13 @@
   include_once("../config/db.php");
   
   if(!$con = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname)) {
-    die("failed to connect!");
+    echo "Failed to connect!";
+    die();
   }
 
   if (!$id = $_GET['id']) {
-    die("no id provided!");
+    echo "No id provided!";
+    die();
   }
 
   $query = "select * from product where id = $id";
@@ -20,6 +22,7 @@
     echo json_encode($product);
   }
   else {
-    die("failed to get product");
+    echo "failed to get product";
+    die();
   }
 ?>
