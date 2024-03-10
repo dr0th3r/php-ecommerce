@@ -9,30 +9,26 @@
   }
 
   $user_id = $_SESSION['user_id'];
-
   if (!isset($user_id)) {
     echo "You are not logged in!";
     die();
   }
-
-  $review_id = $_POST['id'];
+  
+  $id = $_POST['id'];
   $product_id = $_POST['product-id'];
+  $comment = $_POST['comment'];
+  $rating = $_POST['rating'];
 
-  if (!isset($review_id)) {
-    echo "Id not provided!";
+  if (!isset($id) || !isset($comment) || !isset($rating)) {
+    echo "Id, comment or rating not provided!";
     die;
   }
 
-  if (!isset($product_id)) {
-    echo "Product id not provided!";
-    die;
-  }
-
-  $query = "delete from review where id = $review_id and user_id = $user_id;";
+  $query = "update review set comment = '$comment', rating = $rating where id = $id and user_id = $user_id;";
 
   if (mysqli_query($con, $query)) {
     header("Location: /ecommerce/product?id=$product_id");
   } else {
-    echo "Failed to delete review!";
+    echo "Failed to update review!";
   }
 ?>

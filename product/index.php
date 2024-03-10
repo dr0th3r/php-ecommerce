@@ -50,6 +50,7 @@
   <?php
     echo "<title>" . $product['name'] . "</title>";
   ?>
+  <link rel="stylesheet" href="../static/product.css">
   <link rel="stylesheet" href="../static/style.css">
   <link rel="stylesheet" href="../static/header.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -72,16 +73,25 @@
       foreach ($reviews as $i=>$review) {
         if ($i == 0 && $review['user_id'] == $user_id) {
           echo <<<HEREDOC
-              <li>
+              <li class="user-review is-active">
                 <p>{$review['user_name']}</p>
                 <p>{$review['comment']}</p>
                 <p>{$review['rating']}</p>
-                <button>Edit</button>
+                <button id="edit-review-btn">Edit</button>
                 <form action="./delete_review.php" method="post">
                   <input type="hidden" name="id" value="{$review['id']}" />
-                  <input type="hidden" name="user-id" value="{$review['user_id']}" />
                   <input type="hidden" name="product-id" value="{$product['id']}" />
                   <button type="submit">Delete</button>
+                </form>
+              </li>
+              <li class="update-review">
+                <form action="./update_review.php" method="post">
+                  <input type="hidden" name="id" value="{$review['id']}" />
+                  <input type="hidden" name="product-id" value="{$product['id']}" />
+                  <textarea type="text" name="comment" >{$review['comment']}</textarea>
+                  <input type="number" name="rating" min="1" max="5" value="{$review['rating']}"/>
+                  <button type="submit">Update</button>
+                  <button type="button" id="cancel-update-btn">Cancel</button>
                 </form>
               </li>
           HEREDOC;
@@ -126,5 +136,7 @@
 
       }
     ?>
+  </ul>
+  <script src="./product.js"></script>
 </body>
 </html>

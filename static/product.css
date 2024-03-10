@@ -1,0 +1,7 @@
+.user-review, .update-review {
+  display: none;
+}
+
+.is-active {
+  display:flex;
+}
