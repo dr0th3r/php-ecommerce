@@ -46,3 +46,15 @@ body {
 .login-input, .login-submit {
   font-size: 1.1rem;
 }
+
+span {
+  color: #f0f0f0;
+  text-align: center;
+}
+
+a {
+  color: #f0f0f0; /* change later */
+  text-align: center;
+  text-decoration: none;
+  transition: all .3s ease-out;
+}
