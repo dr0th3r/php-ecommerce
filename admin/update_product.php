@@ -2,11 +2,16 @@
   session_start();
   include_once("../config/db.php");
   
+  if (!isset($_SESSION['user_id']) || !isset($_SESSION['permission']) || $_SESSION['permission'] !== 'admin'){
+    header("Location: /ecommerce/login/");
+    die;
+  }
+
   if(!$con = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname)) {
     echo "Failed to connect!";
     die();
   }
-  
+
   $id = $_POST['id'];
   $name = $_POST['name'];
   $description = $_POST['description'];
