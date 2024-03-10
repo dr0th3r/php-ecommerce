@@ -79,6 +79,8 @@
                 <button>Edit</button>
                 <form action="./delete_review.php" method="post">
                   <input type="hidden" name="id" value="{$review['id']}" />
+                  <input type="hidden" name="user-id" value="{$review['user_id']}" />
+                  <input type="hidden" name="product-id" value="{$product['id']}" />
                   <button type="submit">Delete</button>
                 </form>
               </li>
