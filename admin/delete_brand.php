@@ -18,18 +18,13 @@
     die;
   }
 
-  $productQuery = "delete from product where brand_id = $id";
-  $brandQuery = "delete from brand where id = $id";
+  $query = "delete from brand where id = $id";
 
-  $productResult = mysqli_query($con, $productQuery);
-  $brandResult = mysqli_query($con, $brandQuery);
+  $result = mysqli_query($con, $query);
 
-  if ($productResult && $brandResult) {
+  if ($result) {
     header("Location: ../admin/index.php");
     die;
-  }
-  elseif ($productResult) {
-    echo "Failed to delete brand";
   } else {
     echo "Failed to delete product";
   }
