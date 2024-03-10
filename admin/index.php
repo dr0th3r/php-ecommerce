@@ -90,12 +90,17 @@
           echo <<<HEREDOC
             <li>
               <span>{$product['name']}</span>
-              <form action="./delete_product.php" method="post">
-                <input type="hidden" name="id" value="{$product['id']}" />
-                <button type="submit" class="submit-btn">
-                  <i class="fa fa-solid fa-trash"></i>
+              <div class="icon-container">
+                <button class="submit-btn update-product-btn" id={$product['id']}>
+                  <i class="fa fa-solid fa-pen"></i>
                 </button>
-              </form>
+                <form action="./delete_product.php" method="post">
+                  <input type="hidden" name="id" value="{$product['id']}" />
+                  <button type="submit" class="submit-btn">
+                    <i class="fa fa-solid fa-trash"></i>
+                  </button>
+                </form>
+              </div>
             </li>
           HEREDOC;
         }
@@ -122,6 +127,27 @@
           ?>
         </select>
         <button type="submit">Create Product</button>
+    </form>
+    <form method="dialog">
+        <button>Cancel</button>
+    </form>
+  </dialog>
+
+  <dialog id="update-product-dialog">
+    <h1>Update Product</h1>
+    <form action="./update_product.php" method="post" class="update-product-form">
+        <input type="hidden" name="id" id="update-product-id"/>
+        <input type="text" placeholder="Product Name" name="name" id="update-product-name"/>
+        <textarea type="text" placeholder="Description" name="description" id="update-product-description"></textarea>
+        <input type="text" placeholder="Price" name="price" id="update-product-price"/>
+        <select name="brand-id" id="update-product-brand-id">
+          <?php
+            foreach ($brands as $brand) {
+              echo "<option value='".$brand['id']."'>".$brand['name']."</option>";
+            }
+          ?>
+        </select>
+        <button type="submit">Update Product</button>
     </form>
     <form method="dialog">
         <button>Cancel</button>

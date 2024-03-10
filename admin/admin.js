@@ -35,11 +35,46 @@ brandList.addEventListener("click", (e) => {
   });
 });
 
-//dialog
+//create product
 
 const createProductDialog = document.getElementById("create-product-dialog");
 const createProductBtn = document.getElementById("create-product-btn");
 
 createProductBtn.addEventListener("click", () => {
   createProductDialog.show();
+});
+
+//update product
+
+const productList = document.querySelector(".product-list");
+
+const updateProductDialog = document.getElementById("update-product-dialog");
+//inputs
+const updateProductId = document.getElementById("update-product-id");
+const updateProductName = document.getElementById("update-product-name");
+const updateProductDescription = document.getElementById(
+  "update-product-description"
+);
+const updateProductPrice = document.getElementById("update-product-price");
+const updateProductBrandId = document.getElementById("update-product-brand-id");
+
+productList.addEventListener("click", (e) => {
+  const btn = e.target.closest(".update-product-btn");
+  if (!btn) return;
+
+  const productId = btn.id;
+
+  const url = `/ecommerce/admin/get_product.php?id=${productId}`;
+
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      updateProductId.value = data.id;
+      updateProductName.value = data.name;
+      updateProductDescription.value = data.description;
+      updateProductPrice.value = data.price;
+      updateProductBrandId.value = data.brand_id;
+      updateProductDialog.show();
+    })
+    .catch((error) => console.log(error));
 });

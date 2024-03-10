@@ -61,7 +61,7 @@ dialog::backdrop {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.create-product-form {
+.create-product-form, .update-product-form {
   display: flex;
   flex-direction: column;
   gap: .5rem;
