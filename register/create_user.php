@@ -24,6 +24,7 @@
   if ($respone && $user_id = mysqli_insert_id($con)) {
     $_SESSION['user_id'] = $user_id;
     $_SESSION['permission'] = 'user';
+    $_SESSION['name'] = $name;
 
     header("Location: ../index.php");
   } else {

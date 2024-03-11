@@ -13,10 +13,13 @@
       if ($user_data['password'] === $password) {
         $_SESSION['user_id'] = $user_data['id'];
         $_SESSION['permission'] = $user_data['permission_level'];
+        $_SESSION['name'] = $user_data['name'];
 
         header("Location: index.php");
         die;
       }
+    } else {
+      echo "Invalid email or password!";
     }
   }
 ?>

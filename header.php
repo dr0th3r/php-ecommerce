@@ -20,6 +20,12 @@
             echo <<<HEREDOC
               <button class="icon-btn" id="toggle-dropdown-btn"><i class="fas fa-user"></i></button>
               <div class="dropdown">
+                <button class="icon-btn change-name-btn is-active">Change Name</button>
+                <form action="/ecommerce/update_name.php" method="post" class="change-name-form">
+                  <input type="text" name="name" placeholder="New Name" value="{$_SESSION['name']}">
+                  <button class="icon-btn">Update</button>
+                  <button class="icon-btn cancel-change-name-btn" type="button">Cancel</button> 
+                </form>
                 <form action="/ecommerce/logout.php" method="post">
                   <button class="icon-btn">Logout</button>
                 </form>

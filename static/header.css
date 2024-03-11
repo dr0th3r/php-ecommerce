@@ -158,6 +158,24 @@ a {
   text-decoration: none;
 }
 
+.change-name-btn, .change-name-form {
+  display: none;
+}
+
+.change-name-form {
+  flex-direction: column;
+  gap: .5rem;
+  align-items: center;
+}
+
+.change-name-form input {
+  width: calc(100% - .5rem);
+  padding: .5rem .25rem;
+  border: 1px solid #f0f0f0;
+  border-radius: 8px;
+  outline: none;
+}
+
 .is-active {
   display: flex;
 }
