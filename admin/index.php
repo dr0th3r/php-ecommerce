@@ -115,10 +115,11 @@
 
   <dialog id="create-product-dialog">
     <h1>Create Product</h1>
-    <form action="./create_product.php" method="post" class="create-product-form">
+    <form action="./create_product.php" method="post" class="create-product-form" enctype="multipart/form-data">
         <input type="text" placeholder="Product Name" name="name"/>
         <textarea type="text" placeholder="Description" name="description"></textarea>
         <input type="text" placeholder="Price" name="price"/>
+        <input type="file" name="image" accept="image/png, image/jpeg"/>
         <select name="brand-id">
           <?php
             foreach ($brands as $brand) {
