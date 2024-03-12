@@ -1,5 +1,21 @@
 <?php
   session_start();
+
+  include_once("./config/db.php");
+
+  if (!$con = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname)) {
+    echo "Failed to connect!";
+    die();
+  }
+
+  $query = "select * from product limit 5;";
+  $result = mysqli_query($con, $query);
+
+  if ($result) {
+    $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
+  } else {
+    echo "Failed to fetch products!";
+  }
 ?>
 
 <!DOCTYPE html>
@@ -13,6 +29,16 @@
 </head>
 <body>
   <?php require_once 'header.php'; ?>
-  <a href="/ecommerce/login">Login</a>
+  <?php
+    foreach ($products as $product) {
+      echo <<<HEREDOC
+        <div class="product">
+          <h3>{$product['name']}</h3>
+          <p>{$product['description']}</p>
+          <p>{$product['price']}</p>
+        </div>
+      HEREDOC;
+    }
+  ?>
 </body>
 </html>
