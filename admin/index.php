@@ -136,11 +136,12 @@
 
   <dialog id="update-product-dialog">
     <h1>Update Product</h1>
-    <form action="./update_product.php" method="post" class="update-product-form">
+    <form action="./update_product.php" method="post" class="update-product-form" enctype="multipart/form-data">
         <input type="hidden" name="id" id="update-product-id"/>
         <input type="text" placeholder="Product Name" name="name" id="update-product-name"/>
         <textarea type="text" placeholder="Description" name="description" id="update-product-description"></textarea>
         <input type="text" placeholder="Price" name="price" id="update-product-price"/>
+        <input type="file" name="image" accept="image/png, image/jpeg"/>
         <select name="brand-id" id="update-product-brand-id">
           <?php
             foreach ($brands as $brand) {
