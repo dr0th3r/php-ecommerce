@@ -50,7 +50,7 @@
               <a href="/ecommerce/product/?id={$product['id']}">
                 {$product['name']}</h3>
               </a>
-            <p>{$product['avg_rating']} / 5</p>
+            <p>{$product['avg_rating']}/5</p>
             <p>\${$product['price']}</p>
           </div>
         HEREDOC;

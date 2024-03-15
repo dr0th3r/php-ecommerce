@@ -1,7 +1,134 @@
-.user-review, .update-review {
-  display: none;
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
 }
 
 .is-active {
   display:flex;
+}
+
+.product {
+  max-width: 800px;
+  width: 50%;
+  padding: 1rem;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.product-info {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+  text-align: start;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+p {
+  font-size: 1.2rem;
+  font-weight: normal;
+}
+
+.brand-name {
+  font-weight: bold;
+}
+
+.price {
+  font-size: 2rem;
+  font-weight: bold;
+  color: red;
+}
+
+
+img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+}
+
+.reviews {
+  width: 50%;
+  max-width: 800px;
+  align-self: center;
+}
+
+.reviews li {
+  list-style: none;
+  max-width: 800px;
+}
+
+.review {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+}
+
+.review p {
+  word-wrap: break-word;
+}
+
+.review-form {
+  display: flex;
+  gap: .2rem;
+}
+
+.review-form input {
+  min-width: 8ch;
+}
+
+.review-form textarea {
+  flex: 1;
+}
+
+.review-form input, .review-form textarea{
+  padding: .5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+}
+
+.review-form button {
+  padding: .5rem 1rem;
+  font-size: 1rem;
+  background-color: transparent;
+  border: 1px solid var(--pri-color);
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all .3s ease-out;
+}
+
+.review-form button:hover {
+  background-color: var(--pri-color);
+  color: white;
+}
+
+.user-review, .update-review {
+  display: none;
+  flex-direction: row;
+  gap: .5rem;
+}
+
+.review-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+}
+
+.user-review button {
+  background-color: transparent;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--pri-color);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all .3s ease-out;
+}
+
+.user-review button:hover {
+  background-color: var(--pri-color);
+  color: white;
 }
