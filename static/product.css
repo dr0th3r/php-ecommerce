@@ -55,6 +55,7 @@ img {
   width: 50%;
   max-width: 800px;
   align-self: center;
+  overflow-y: auto;
 }
 
 .reviews li {
@@ -131,4 +132,24 @@ img {
 .user-review button:hover {
   background-color: var(--pri-color);
   color: white;
+}
+
+@media screen and (max-width: 768px){
+  .product {
+    max-width: 100%;
+    width: auto;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .product img {
+    max-width: 40%;
+    height: auto;
+  }
+
+  .reviews {
+    max-width: 100%;
+    width: auto;
+    padding: 0 1rem;
+  }
 }
