@@ -11,11 +11,11 @@
 }
 
 .brand-list {
-  flex: 1;
+  flex: 2;
 }
 
 .product-list {
-  flex: 2;
+  flex: 3;
 }
 
 .brand-li, .product-list li {
@@ -36,13 +36,22 @@
 
 }
 
-.submit-btn {
-  background-color: transparent;
-  border: none;
-  outline: none;
-  cursor: pointer;
+.icon-container button {
+  width: 2rem;
+  height: 2rem; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+.create-brand-form, .update-brand-form {
+  display: flex;
+  gap: .5rem;
+}
+
+.update-brand-form {
+  width: 100%;
+}
 
 .create-brand-btn, .create-brand-form {
   display: none;
@@ -74,4 +83,35 @@ dialog::backdrop {
 
 .is-active {
   display: flex;
+}
+
+button {
+  background-color: transparent;
+  border: 1px solid var(--pri-color);
+  padding: .5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all .3s ease-out;
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: var(--pri-color);
+  color: white;
+}
+
+input, textarea, select {
+  border: 1px solid #ccc;
+  padding: .5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  min-width: 0;
+}
+
+.create-brand-form input, .update-brand-form input {
+  flex: 1;
+}
+
+.close-dialog-form, .close-dialog-form button {
+  width: 100%;
 }

@@ -62,7 +62,7 @@
               </div>
             </li>
             <li class="update-brand-li" id="update-{$brand['id']}">
-              <form action="./update_brand.php" method="post">
+              <form action="./update_brand.php" method="post" class="update-brand-form">
                 <input type="hidden" name="id" value="{$brand['id']}" />
                 <input type="text" name="name" placeholder="Brand Name" value="{$brand['name']}">
                 <button type="submit">Update Brand</button>
@@ -77,7 +77,7 @@
           Add brand
         </button>
         <form method="post" action="./create_brand.php" id="create-brand-form" class="create-brand-form">
-          <input type="text" name="name" placeholder="Brand Name" />
+          <input type="text" name="name" placeholder="Brand Name"/>
           <button type="submit">Create Brand</button>
           <button id="cancel-create-brand-btn" type="button">Cancel</button>
         </form>
@@ -129,7 +129,7 @@
         </select>
         <button type="submit">Create Product</button>
     </form>
-    <form method="dialog">
+    <form method="dialog" class="close-dialog-form">
         <button>Cancel</button>
     </form>
   </dialog>
@@ -151,7 +151,7 @@
         </select>
         <button type="submit">Update Product</button>
     </form>
-    <form method="dialog">
+    <form method="dialog" class="close-dialog-form">
         <button>Cancel</button>
     </form>
   </dialog>
