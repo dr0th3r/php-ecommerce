@@ -8,7 +8,16 @@
     die();
   }
 
-  $query = "select * from product limit 5;";
+  $query = "select 
+              product.id, product.name, product.price, product.photo_name, AVG(review.rating) as avg_rating
+            from 
+              product
+            left join
+              review on review.product_id = product.id
+            group by
+              product.id
+            limit 20;";
+
   $result = mysqli_query($con, $query);
 
   if ($result) {
@@ -33,6 +42,7 @@
   <main class="products">
     <?php
       foreach ($products as $product) {
+        $product['avg_rating'] = round($product['avg_rating'] ?? 0, 1);
         echo <<<HEREDOC
           <div class="product">
             <img src="/ecommerce/uploads/{$product['photo_name']}" />
@@ -40,6 +50,7 @@
               <a href="/ecommerce/product/?id={$product['id']}">
                 {$product['name']}</h3>
               </a>
+            <p>{$product['avg_rating']} / 5</p>
             <p>\${$product['price']}</p>
           </div>
         HEREDOC;
