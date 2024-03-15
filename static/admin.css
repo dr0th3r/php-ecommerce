@@ -115,3 +115,9 @@ input, textarea, select {
 .close-dialog-form, .close-dialog-form button {
   width: 100%;
 }
+
+@media  (max-width: 768px) {
+  .list-container {
+    flex-direction: column;
+  }
+}
