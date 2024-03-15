@@ -7,9 +7,9 @@
     die();
   }
 
-  $user_id = $_SESSION['user_id'];
+  $user_id = $_SESSION['user_id'] ?? null;
 
-  $id = $_GET['id'];
+  $id = $_GET['id'] ?? null;
 
   if (!isset($id)) {
     echo "Id not provided!";
@@ -70,6 +70,30 @@
   <h2>Reviews</h2>
   <ul>
     <?php
+      if (count($reviews) == 0 || $reviews[0]['user_id'] != $user_id) {
+        if (isset($user_id)) {
+          echo <<<HEREDOC
+            <li>
+              <form action="./create_review.php" method="post">
+                <input type="hidden" name="id" value="{$product['id']}" />
+                <textarea type="text" name="comment" ></textarea>
+                <input type="number" name="rating" min="1" max="5"/>
+                <button type="submit">Add</button>
+              </form>
+            </li>
+          HEREDOC;
+        } else {
+          echo <<<HEREDOC
+            <li>
+              <a href="/ecommerce/login">Login to add a review</a>
+            </li>
+          HEREDOC;
+        }
+      }
+    ?>
+
+
+    <?php
       foreach ($reviews as $i=>$review) {
         if ($i == 0 && $review['user_id'] == $user_id) {
           echo <<<HEREDOC
@@ -96,44 +120,14 @@
               </li>
           HEREDOC;
         } else {
-          if ($i == 0 && isset($user_id)) {
-            echo <<<HEREDOC
-              <li>
-                <form action="./create_review.php" method="post">
-                  <input type="hidden" name="id" value="{$product['id']}" />
-                  <textarea type="text" name="comment" ></textarea>
-                  <input type="number" name="rating" min="1" max="5"/>
-                  <button type="submit">Add</button>
-                </form>
-              </li>
-              <li>
-                <p>{$review['user_name']}</p>
-                <p>{$review['comment']}</p>
-                <p>{$review['rating']}</p>
-              </li>
-            HEREDOC;
-          } elseif ($i == 0) {
-            echo <<<HEREDOC
-              <li>
-                <a href="/ecommerce/login">Login to add a review</a>
-              </li>
-              <li>
-                <p>{$review['user_name']}</p>
-                <p>{$review['comment']}</p>
-                <p>{$review['rating']}</p>
-              </li>
-            HEREDOC;
-          } else {
-            echo <<<HEREDOC
-              <li>
-                <p>{$review['user_name']}</p>
-                <p>{$review['comment']}</p>
-                <p>{$review['rating']}</p>
-              </li>
-            HEREDOC;
-          }
+          echo <<<HEREDOC
+            <li>
+              <p>{$review['user_name']}</p>
+              <p>{$review['comment']}</p>
+              <p>{$review['rating']}</p>
+            </li>
+          HEREDOC;
         }
-
       }
     ?>
   </ul>
